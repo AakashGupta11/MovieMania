@@ -1,0 +1,70 @@
+body {
+  padding-top: 56px;
+  background: url("/assets/background-1.jpg");
+}
+
+.custom-jumbo {
+  margin-top: 0px !important;
+  background-image: url("/assets/movie_img.jpg");
+  background-size: cover;
+}
+
+.active-cyan-4 input[type="text"] {
+  width: 50%;
+}
+
+.btn-custom {
+  background-color: #6b0666;
+}
+
+.disp-custom {
+  font-weight: bolder;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.heading {
+  color: white;
+  font-family: "Acme", sans-serif;
+  font-size: 50px;
+}
+
+.desc-font {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.container-box {
+  border: 1px solid white;
+  border-radius: 20px;
+  height: 500px;
+  width: 100%;
+  margin: 20px auto;
+  background-color: white;
+}
+
+.round {
+  border-radius: 20px;
+}
+
+.round-btn {
+  border-radius: 20px;
+  width: 150px;
+}
+
+img {
+  height: 500px;
+  width: 100%;
+}
+
+.left {
+  float: left;
+}
+
+.login-div {
+  float: right;
+  top: 25%;
+}
+
+.to-right {
+  float: right;
+}

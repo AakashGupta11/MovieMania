@@ -1,0 +1,65 @@
+<p>search-movies works!</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Movie Mania</title>
+    <!-- Custom styles for this template -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Balsamiq+Sans&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- including the navbar -->
+    <app-navbar></app-navbar>
+
+    <div class="container">
+      <br />
+      <h2 class="heading" *ngIf="searchedMovies.length != 0; else noResult">
+        Search result for "{{ searchedText }}"
+      </h2>
+      <br />
+      <div id="searchedMovies" class="row text-center">
+        <div
+          *ngFor="let movie of searchedMovies"
+          class="col-lg-3 col-md-6 mb-4"
+        >
+          <div class="card h-100">
+            <a [routerLink]="['/movie-details', movie['id']]"
+              ><img
+                class="card-img-top img-height"
+                src="{{ movie.posterPath }}"
+                alt=""
+            /></a>
+            <!-- {{ movie["id"] }} -->
+            <div class="card-footer">
+              <a
+                (click)="addToWatchList(movie['id'])"
+                class="btn btn-primary btn-sm desc-font"
+                style="float: left"
+                >+ Watched</a
+              >
+              <a
+                (click)="addToWishList(movie['id'])"
+                class="btn btn-primary btn-sm desc-font"
+                style="float: right"
+                >+ Wished</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noResult>
+        <h2 class="heading">No results found for "{{ searchedText }}"</h2>
+      </ng-template>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Your Website 2021
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

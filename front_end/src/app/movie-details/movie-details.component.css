@@ -1,0 +1,43 @@
+body {
+  padding-top: 56px;
+  background: url("/assets/background-1.jpg");
+}
+
+.custom-jumbo {
+  margin-top: 0px !important;
+  background-image: url("/assets/movie_img.jpg");
+  background-size: cover;
+}
+
+.active-cyan-4 input[type="text"] {
+  width: 50%;
+}
+
+.btn-custom {
+  background-color: #6b0666;
+}
+
+.disp-custom {
+  font-weight: bolder;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.heading {
+  color: white;
+  font-family: "Acme", sans-serif;
+  font-size: 50px;
+}
+
+.desc-font {
+  font-family: "Balsamiq Sans", cursive;
+}
+
+.reviews {
+  width: 75%;
+}
+
+ngb-rating {
+  color: #88ff00;
+  font-size: 30px;
+}

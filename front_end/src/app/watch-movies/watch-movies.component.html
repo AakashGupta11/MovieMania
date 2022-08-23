@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Movie Mania</title>
+    <!-- Custom styles for this template -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Balsamiq+Sans&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <!-- including the navbar -->
+    <app-navbar></app-navbar>
+
+    <!-- Page Content -->
+    <div class="container">
+      <br />
+      <h2 id="head" class="heading">Your Watched list</h2>
+      <h3 *ngIf="isWatchMovies" id="head" class="heading">
+        Time Spend: {{ runtime }}
+      </h3>
+      <div
+        *ngIf="isWatchMovies; else noWatchMovies"
+        id="watched"
+        class="row text-center"
+      >
+        <div *ngFor="let movie of watchedMovies" class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <a [routerLink]="['/movie-details', movie['movieId']]"
+              ><img
+                class="card-img-top img-height"
+                src="{{ movie.posterPath }}"
+                alt=""
+            /></a>
+            <!-- {{ movie["id"] }} -->
+            <div class="card-body">
+              <h4 class="card-title desc-font">{{ movie["title"] }}</h4>
+              <a
+                class="btn btn-danger btn-sm desc-font"
+                (click)="deleteWatchedMovie(movie['movieId'])"
+                >Remove</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noWatchMovies>
+        <h1 class="my-4 heading">You don't have any Movies in Watchlist :(</h1>
+      </ng-template>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Your Website 2021
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

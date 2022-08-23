@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to Movie Mania</title>
+    <!-- Custom styles for this template -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Acme&family=Balsamiq+Sans&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <app-navbar></app-navbar>
+
+    <div class="container">
+      <!-- Portfolio Item Heading -->
+      <div id="movieSingle">
+        <div id="movieSingle">
+          <h1 class="my-4 heading">{{ movieDetails["title"] }}</h1>
+
+          <div class="row">
+            <div class="col-md-5">
+              <img
+                class="img-fluid"
+                src="{{ movieDetails['poster'] }}"
+                alt=""
+              />
+            </div>
+
+            <div class="col-md-7">
+              <ul class="list-group">
+                <li class="list-group-item desc-font">
+                  <strong>Genre: </strong>{{ movieDetails["genre"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>Released: </strong>{{ movieDetails["released"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>Rated: </strong>{{ movieDetails["rated"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>IMDB Rating: </strong>{{ movieDetails["imdbRating"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>Director: </strong>{{ movieDetails["directors"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>Writer: </strong>{{ movieDetails["writers"] }}
+                </li>
+                <li class="list-group-item desc-font">
+                  <strong>Actors: </strong>{{ movieDetails["actors"] }}
+                </li>
+              </ul>
+              <li class="list-group-item desc-font">
+                <strong>Overview: </strong>{{ movieDetails["plot"] }}
+              </li>
+              <a
+                href="http://imdb.com/title/{{ movieDetails['imdbId'] }}"
+                target="blank"
+                class="btn btn-primary desc-font"
+                >View IMDB</a
+              >
+              <a
+                (click)="addToWatchListIfIMDB(movieDetails['imdbId'])"
+                class="btn btn-primary desc-font"
+                >Add to Watched</a
+              >
+              <a
+                (click)="addToWishListIfIMDB(movieDetails['imdbId'])"
+                class="btn btn-primary desc-font"
+                >Add to Wished</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reviews">
+        <form *ngIf="isUserLoggedIn" action="">
+          <ngb-rating
+            [max]="5"
+            [(rate)]="currentRating"
+            [readonly]="false"
+          ></ngb-rating
+          ><br />
+          <textarea
+            name="movie-reviews"
+            id="movie-reviews"
+            cols="50"
+            rows="3"
+            [(ngModel)]="comment"
+          >
+          </textarea>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button
+            [disabled]="currentRating == 0"
+            (click)="postReviewComment()"
+            class="btn btn-primary btn-sm desc-font"
+            style="margin-bottom: 20px"
+          >
+            Submit
+          </button>
+        </form>
+        <h6 *ngIf="movieReviews.length > 0" class="heading">Reviews</h6>
+        <div *ngFor="let review of movieReviews" class="list-group">
+          <a
+            class="
+              list-group-item list-group-item-action
+              flex-column
+              align-items-start
+            "
+          >
+            <div class="d-flex w-100 justify-content-between">
+              <h6 class="mb-1">{{ review["review"] }}</h6>
+            </div>
+            <p class="mb-1">
+              {{ review["comment"] }}
+            </p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related movies Row -->
+      <h3 class="my-4 heading">Similar Movies</h3>
+
+      <div id="similarMovies" class="row">
+        <div *ngFor="let movie of similarMovies" class="col-lg-3 col-md-6 mb-4">
+          <div class="card h-100">
+            <a [routerLink]="['/movie-details', movie['id']]"
+              ><img
+                class="card-img-top img-height"
+                src="{{ movie.posterPath }}"
+                alt=""
+            /></a>
+            <div class="card-footer">
+              <a
+                (click)="addToWatchList(movie['id'])"
+                class="btn btn-primary btn-sm desc-font"
+                style="float: left"
+                >+ Watched</a
+              >
+              <a
+                (click)="addToWishList(movie['id'])"
+                class="btn btn-primary btn-sm desc-font"
+                style="float: right"
+                >+ Wished</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; Your Website 2021
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
